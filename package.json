@@ -1,0 +1,24 @@
+{
+  "name": "polls",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx watch src/http/server.ts"
+  },
+  "keywords": [],
+  "author": "Wilson Franca de Souza",
+  "license": "ISC",
+  "devDependencies": {
+    "@rocketseat/eslint-config": "2.1.0",
+    "@types/node": "20.11.16",
+    "eslint": "8.56.0",
+    "prisma": "5.9.1",
+    "tsx": "4.7.0",
+    "typescript": "5.3.3"
+  },
+  "dependencies": {
+    "fastify": "4.26.0",
+    "zod": "3.22.4"
+  }
+}
