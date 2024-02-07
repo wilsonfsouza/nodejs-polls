@@ -1,7 +1,14 @@
+import { env } from '@/env'
+import fastifyCookie from '@fastify/cookie'
 import fastify from 'fastify'
 import { appRoutes } from './routes'
 
 const app = fastify()
+
+app.register(fastifyCookie, {
+  secret: env['COOKIES-SECRET'],
+  hook: 'onRequest',
+})
 
 app.register(appRoutes)
 
