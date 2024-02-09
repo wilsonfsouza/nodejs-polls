@@ -1,4 +1,5 @@
 import { prisma } from '@/lib/prisma'
+import { redis } from '@/lib/redis'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { randomUUID } from 'node:crypto'
 import z from 'zod'
@@ -45,6 +46,8 @@ export async function voteOnPoll(request: FastifyRequest, reply: FastifyReply) {
           id: userPreviousVoteOnPoll.id,
         },
       })
+
+      await redis.zincrby(pollId, -1, userPreviousVoteOnPoll.pollOptionId)
     }
   }
 
@@ -66,6 +69,8 @@ export async function voteOnPoll(request: FastifyRequest, reply: FastifyReply) {
       pollOptionId,
     },
   })
+
+  await redis.zincrby(pollId, 1, pollOptionId)
 
   return reply.status(201).send()
 }
