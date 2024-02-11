@@ -1,5 +1,6 @@
 import { env } from '@/env'
 import fastifyCookie from '@fastify/cookie'
+import fastifyWebsocket from '@fastify/websocket'
 import fastify from 'fastify'
 import { appRoutes } from './routes'
 
@@ -9,6 +10,8 @@ app.register(fastifyCookie, {
   secret: env['COOKIES-SECRET'],
   hook: 'onRequest',
 })
+
+app.register(fastifyWebsocket)
 
 app.register(appRoutes)
 
